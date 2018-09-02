@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.eztoll.server">
+	<logger name="com.sparks.ra">
 		<level value="info" />
 	</logger>
 	
