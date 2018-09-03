@@ -1,8 +1,6 @@
 package com.sparks.ra.model;
 
 import java.util.Date;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +27,9 @@ public class Report {
 	private double progress;
 	@Column(name = "RELEASE_ID")
     private long releaseID;
-	/*
-	List<Ticket> payloadItems;
 	
-	List<Defect> bugList;*/
+	
+	
 	@Column(name = "COMMENT")
 	private String comments;
 	@Column(name = "ATTACHMENT")
@@ -85,20 +82,6 @@ public class Report {
 	public void setProgress(double progress) {
 		this.progress = progress;
 	}
-	/*@OneToMany
-	@JoinColumn
-	public List<Ticket> getPayloadItems() {
-		return payloadItems;
-	}
-	public void setPayloadItems(List<Ticket> payloadItems) {
-		this.payloadItems = payloadItems;
-	}
-	public List<Defect> getBugList() {
-		return bugList;
-	}
-	public void setBugList(List<Defect> bugList) {
-		this.bugList = bugList;
-	}*/
 	public String getComments() {
 		return comments;
 	}

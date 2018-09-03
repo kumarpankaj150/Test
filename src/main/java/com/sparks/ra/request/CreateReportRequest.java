@@ -6,6 +6,7 @@ public class CreateReportRequest implements IRequest {
 
 	String date;
 	String project;
+	String projectRelease;
 	String submittedBy;
 	
 	
@@ -24,6 +25,15 @@ public class CreateReportRequest implements IRequest {
 
 	public void setProject(String project) {
 		this.project = project;
+	}
+	
+
+	public String getProjectRelease() {
+		return projectRelease;
+	}
+
+	public void setProjectRelease(String projectRelease) {
+		this.projectRelease = projectRelease;
 	}
 
 	public String getSubmittedBy() {
