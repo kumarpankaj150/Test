@@ -1,26 +1,57 @@
 package com.sparks.ra.model;
 
-import java.util.List;
+import java.util.Date;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name= "REPORT")
 public class Report {
-
-	String date;
-	String status;
-	String project;
-	double progress;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long reportId ;
+	@Temporal(value = TemporalType.DATE)
+	@Column(name = "REPORT_DATE")
+	private Date date;
+	@Column(name = "REPORT_STATUS")
+	private String status;
+	@Column(name = "PROJECT")
+	private String project;
+	@Column(name = "PROGRESS")
+	private double progress;
+	@Column(name = "RELEASE_ID")
+    private long releaseID;
+	/*
 	List<Ticket> payloadItems;
-	List<Defect> bugList;
-	String comments;
-	String attachments;
-	String submittedBy;
-	String reviewdBy;
-	String createTimeStamp;
-	String updateTimeStamp;
 	
-	public String getDate() {
+	List<Defect> bugList;*/
+	@Column(name = "COMMENT")
+	private String comments;
+	@Column(name = "ATTACHMENT")
+	private String attachments;
+	@Column(name = "REPORT_SUBMITTED_BY")
+	private String submittedBy;
+	@Column(name = "REPORT_REVIEWED_BY")
+	private String reviewdBy;
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "REPORT_CREATE_TIME_STAMP")
+	private Date createTimeStamp;
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "REPORT_UPDATE_TIME_STAMP")
+	private Date updateTimeStamp;
+	
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getStatus() {
@@ -36,16 +67,16 @@ public class Report {
 	public void setProject(String project) {
 		this.project = project;
 	}
-	public String getCreateTimeStamp() {
+	public Date getCreateTimeStamp() {
 		return createTimeStamp;
 	}
-	public void setCreateTimeStamp(String createTimeStamp) {
+	public void setCreateTimeStamp(Date createTimeStamp) {
 		this.createTimeStamp = createTimeStamp;
 	}
-	public String getUpdateTimeStamp() {
+	public Date getUpdateTimeStamp() {
 		return updateTimeStamp;
 	}
-	public void setUpdateTimeStamp(String updateTimeStamp) {
+	public void setUpdateTimeStamp(Date updateTimeStamp) {
 		this.updateTimeStamp = updateTimeStamp;
 	}
 	public double getProgress() {
@@ -54,6 +85,8 @@ public class Report {
 	public void setProgress(double progress) {
 		this.progress = progress;
 	}
+	/*@OneToMany
+	@JoinColumn
 	public List<Ticket> getPayloadItems() {
 		return payloadItems;
 	}
@@ -65,7 +98,7 @@ public class Report {
 	}
 	public void setBugList(List<Defect> bugList) {
 		this.bugList = bugList;
-	}
+	}*/
 	public String getComments() {
 		return comments;
 	}
@@ -89,6 +122,18 @@ public class Report {
 	}
 	public void setReviewdBy(String reviewdBy) {
 		this.reviewdBy = reviewdBy;
+	}
+	public long getReportId() {
+		return reportId;
+	}
+	public void setReportId(long reportId) {
+		this.reportId = reportId;
+	}
+	public long getReleaseID() {
+		return releaseID;
+	}
+	public void setReleaseID(long releaseID) {
+		this.releaseID = releaseID;
 	}
 	
 	

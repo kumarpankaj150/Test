@@ -5,5 +5,8 @@ public enum ResponseKey {
 	STATUS,
 	ERROR,
 	EXCEPTION,
-	REPORT
+	REPORT,
+	PROJECTS,
+	PROJECT,
+	RELEASES
 }

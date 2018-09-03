@@ -26,11 +26,11 @@ public class ReportManager {
 		Response response = new Response();
 		try {
 			Report report = new Report();
-			report.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+			report.setDate(new Date());
 			report.setSubmittedBy(request.getSubmittedBy());
 			report.setProject(request.getProject());
-			report.setPayloadItems(new ArrayList<Ticket>());
-			report.setBugList(new ArrayList<Defect>());
+			/*report.setPayloadItems(new ArrayList<Ticket>());
+			report.setBugList(new ArrayList<Defect>());*/
 			report.setStatus("IN_PROGRESS");
 			response.addResponseData(ResponseKey.REPORT,report);
 		}catch(Exception e) {

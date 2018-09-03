@@ -1,16 +1,48 @@
 package com.sparks.ra.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.cache.annotation.Cacheable;
+
+@Entity
+@Table(name= "DEFECT")
 public class Defect {
 
-	Long defectId;
-	String project;
-	String release;
-	String description;
-	String status;
-	String raisedBy;
-	String assignedTo;
-	String createTimeStamp;
-	String updateTimeStamp;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name ="DEFECT_ID")
+	private long defectId;
+	@Column(name = "PROJECT")
+	private String project;
+	@Column(name = "RELEASE_ID")
+    private long releaseID;
+	
+	@Column(name ="DEFECT_DISCRIPTION")
+	private String description;
+	@Column(name ="DEFECT_STATUS")
+	private String status;
+	@Column(name ="DEFECT_RAISED_BY")
+	private String raisedBy;
+	@Column(name ="DEFECT_ASSIGNED_TO")
+	private String assignedTo;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name ="DEFECT_CREATED_TIME_STAMP")
+	private Date createTimeStamp;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name ="DEFECT_UPDATED_TIME_STAMP")
+	private Date updateTimeStamp;
+	
 	
 	public Long getBugId() {
 		return defectId;
@@ -24,12 +56,7 @@ public class Defect {
 	public void setProject(String project) {
 		this.project = project;
 	}
-	public String getRelease() {
-		return release;
-	}
-	public void setRelease(String release) {
-		this.release = release;
-	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -53,6 +80,30 @@ public class Defect {
 	}
 	public void setAssignedTo(String assignedTo) {
 		this.assignedTo = assignedTo;
+	}
+	public long getDefectId() {
+		return defectId;
+	}
+	public void setDefectId(long defectId) {
+		this.defectId = defectId;
+	}
+	public long getReleaseID() {
+		return releaseID;
+	}
+	public void setReleaseID(long releaseID) {
+		this.releaseID = releaseID;
+	}
+	public Date getCreateTimeStamp() {
+		return createTimeStamp;
+	}
+	public void setCreateTimeStamp(Date createTimeStamp) {
+		this.createTimeStamp = createTimeStamp;
+	}
+	public Date getUpdateTimeStamp() {
+		return updateTimeStamp;
+	}
+	public void setUpdateTimeStamp(Date updateTimeStamp) {
+		this.updateTimeStamp = updateTimeStamp;
 	}
 	
 	
