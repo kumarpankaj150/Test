@@ -17,7 +17,7 @@ public class ReportDto {
 		
 		private String comments;
 		
-		private byte[] attachments;
+		private String attachments;
 		
 		private String submittedBy;
 		
@@ -39,8 +39,6 @@ public class ReportDto {
 			this.status = status;
 		}
 		
-		
-		
 		public double getProgress() {
 			return progress;
 		}
@@ -54,10 +52,10 @@ public class ReportDto {
 		public void setComments(String comments) {
 			this.comments = comments;
 		}
-		public byte[] getAttachments() {
+		public String getAttachments() {
 			return attachments;
 		}
-		public void setAttachments(byte[] attachments) {
+		public void setAttachments(String attachments) {
 			this.attachments = attachments;
 		}
 		public String getSubmittedBy() {

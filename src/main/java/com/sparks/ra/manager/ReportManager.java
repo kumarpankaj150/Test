@@ -1,6 +1,5 @@
 package com.sparks.ra.manager;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.sparks.ra.common.RaConstant;
 import com.sparks.ra.model.Defect;
 import com.sparks.ra.model.Report;
-import com.sparks.ra.model.Ticket;
 import com.sparks.ra.request.CreateReportRequest;
 import com.sparks.ra.request.SubmitReportRequest;
 import com.sparks.ra.request.dto.DefectDto;
@@ -33,7 +31,6 @@ public class ReportManager {
 			Report report = new Report();
 			report.setDate(new Date());
 			report.setSubmittedBy(request.getSubmittedBy());
-			report.setProject(request.getProject());
 			/*report.setPayloadItems(new ArrayList<Ticket>());
 			report.setBugList(new ArrayList<Defect>());*/
 			report.setStatus("IN_PROGRESS");
@@ -46,7 +43,8 @@ public class ReportManager {
 		return response;
 	}
 	
-	public boolean submitReport(SubmitReportRequest request) {
+	public Response submitReport(SubmitReportRequest request) {
+	Response repsonse =new Response();
        try {
 		ReportDto reportDto = request.getReport();
 		Report report = new Report();
@@ -73,16 +71,11 @@ public class ReportManager {
 			 }
 			 defectList.add(defect);
 		 }
-		
-		
-		/*report.setPayloadItems(new ArrayList<Ticket>());
-		report.setBugList(new ArrayList<Defect>());*/
-		
-			 report.setStatus(RaConstant.SUBMITED_SUCESSFULLY);
+		report.setStatus(RaConstant.SUBMITED_SUCESSFULLY);
 		
        }catch(Exception e) {
     	   
        }
-	
+       return repsonse;
 	}
 }

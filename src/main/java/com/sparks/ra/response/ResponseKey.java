@@ -8,5 +8,8 @@ public enum ResponseKey {
 	REPORT,
 	PROJECTS,
 	PROJECT,
-	RELEASES
+	RELEASES,
+	RELEASE,
+	TICKETS,
+	DEFECTS,TEST
 }

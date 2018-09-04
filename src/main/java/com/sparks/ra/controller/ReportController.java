@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sparks.ra.manager.ReportManager;
+import com.sparks.ra.model.Defect;
 import com.sparks.ra.model.Release;
+import com.sparks.ra.model.Ticket;
 import com.sparks.ra.repo.ReportDAO;
 import com.sparks.ra.request.CreateReportRequest;
 import com.sparks.ra.request.SubmitReportRequest;
+import com.sparks.ra.request.dto.ReportDto;
 import com.sparks.ra.response.Response;
 import com.sparks.ra.response.ResponseKey;
 
@@ -62,7 +65,6 @@ public class ReportController {
 			logger.info("Exception in getProjects()");
 			response.addResponseData(ResponseKey.EXCEPTION, e.getMessage());
 		}
-		
 		return response;
 	}
 	
@@ -83,14 +85,18 @@ public class ReportController {
 		return response;
 	}
 	
-	@RequestMapping(value="/create",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/submit",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseBody submitReport(@RequestBody SubmitReportRequest request) {
-		logger.info("createReport(): Request: "+request.toString());
-		 
+	public Response submitReport() {
+		//@RequestBody SubmitReportRequest request
+		SubmitReportRequest request = new SubmitReportRequest();
+		request.setReport(new ReportDto());
+		//logger.info("submitReport(): Request: "+request.toString());
+		Response response = new Response();
 		try {
-			boolean success= reportMgr.submitReport(request);
-			/*logger.info("createReport(): Response: "+response.toString());*/
+			/*response = reportMgr.submitReport(request);
+			logger.info("createReport(): Response: "+response.toString());*/
+			response.addResponseData(ResponseKey.TEST, request);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.info("createReport(): Exception: "+e.getMessage());
@@ -98,4 +104,43 @@ public class ReportController {
 		}
 		return response;
 	}
+	
+	@RequestMapping(value="/getReleaseTickets/{projectName}/{release}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Response getReleaseTickets(@PathVariable("projectName")String projectName,@PathVariable("release")String release) {
+		logger.info("getReleaseTickets(): ");
+		Response response = new Response();
+		try {
+			List<Ticket> ticketsList = reportDao.getReleaseTickets(projectName, release);
+			response.addResponseData(ResponseKey.PROJECT, projectName);
+			response.addResponseData(ResponseKey.RELEASE, release);
+			response.addResponseData(ResponseKey.TICKETS, ticketsList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Exception in ReportController.getReleaseTickets()");
+			response.addResponseData(ResponseKey.EXCEPTION, e.getMessage());
+
+		}
+		return response;
+	}
+	
+	@RequestMapping(value="/getReleaseDefects/{projectName}/{release}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Response getReleaseDefects(@PathVariable("projectName")String projectName,@PathVariable("release")String release) {
+		logger.info("getReleaseDefects(): ");
+		Response response = new Response();
+		try {
+			List<Defect> defectList = reportDao.getReleaseDefects(projectName, release);
+			response.addResponseData(ResponseKey.PROJECT, projectName);
+			response.addResponseData(ResponseKey.RELEASE, release);
+			response.addResponseData(ResponseKey.DEFECTS, defectList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("Exception in ReportController.getReleaseDefects()");
+			response.addResponseData(ResponseKey.EXCEPTION, e.getMessage());
+		}
+		return response;
+	}
+	
+	
 }
