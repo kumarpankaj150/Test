@@ -11,8 +11,6 @@ public class ReportDto {
 		
 		private String status;
 		
-		
-		
 		private double progress;
 		
 	    private long releaseID;

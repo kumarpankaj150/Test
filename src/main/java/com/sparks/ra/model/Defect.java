@@ -11,8 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.cache.annotation.Cacheable;
-
 @Entity
 @Table(name= "DEFECT")
 public class Defect {
