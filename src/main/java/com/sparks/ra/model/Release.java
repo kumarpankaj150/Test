@@ -6,9 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name ="RELEASE_META")
+@Table(name ="RELEASE_META",
+uniqueConstraints = {@UniqueConstraint(columnNames = {"RELEASE_PROJECT","RELEASE_VERSION"})})
+
 public class Release {
 	
 	@Id

@@ -10,30 +10,7 @@ public class CreateReportRequest implements IRequest {
 	
 	
 	
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getProject() {
-		return project;
-	}
-
-	public void setProject(String project) {
-		this.project = project;
-	}
-
-	public String getSubmittedBy() {
-		return submittedBy;
-	}
-
-	public void setSubmittedBy(String submittedBy) {
-		this.submittedBy = submittedBy;
-	}
-
+	
 	@Override
 	public ResultKey authenticateRequest() {
 		// TODO Auto-generated method stub

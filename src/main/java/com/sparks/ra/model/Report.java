@@ -8,9 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name= "REPORT")
@@ -23,8 +26,7 @@ public class Report {
 	private Date date;
 	@Column(name = "REPORT_STATUS")
 	private String status;
-	@Column(name = "PROJECT")
-	private String project;
+	
 	@Column(name = "PROGRESS")
 	private double progress;
 	@Column(name = "RELEASE_ID")
@@ -36,7 +38,8 @@ public class Report {
 	@Column(name = "COMMENT")
 	private String comments;
 	@Column(name = "ATTACHMENT")
-	private String attachments;
+	@Lob
+	private byte[] attachments;
 	@Column(name = "REPORT_SUBMITTED_BY")
 	private String submittedBy;
 	@Column(name = "REPORT_REVIEWED_BY")
@@ -47,6 +50,7 @@ public class Report {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "REPORT_UPDATE_TIME_STAMP")
 	private Date updateTimeStamp;
+	
 	
 	public Date getDate() {
 		return date;
@@ -61,12 +65,7 @@ public class Report {
 		this.status = status;
 	}
 	
-	public String getProject() {
-		return project;
-	}
-	public void setProject(String project) {
-		this.project = project;
-	}
+	
 	public Date getCreateTimeStamp() {
 		return createTimeStamp;
 	}
@@ -105,10 +104,10 @@ public class Report {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getAttachments() {
+	public byte[] getAttachments() {
 		return attachments;
 	}
-	public void setAttachments(String attachments) {
+	public void setAttachments(byte[] attachments) {
 		this.attachments = attachments;
 	}
 	public String getSubmittedBy() {

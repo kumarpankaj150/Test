@@ -17,6 +17,7 @@ import com.sparks.ra.manager.ReportManager;
 import com.sparks.ra.model.Release;
 import com.sparks.ra.repo.ReportDAO;
 import com.sparks.ra.request.CreateReportRequest;
+import com.sparks.ra.request.SubmitReportRequest;
 import com.sparks.ra.response.Response;
 import com.sparks.ra.response.ResponseKey;
 
@@ -32,7 +33,7 @@ public class ReportController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReportController.class); 
 	
-	@RequestMapping(value="/create",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/create",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Response createReport(@RequestBody CreateReportRequest request) {
 		logger.info("createReport(): Request: "+request.toString());
@@ -78,6 +79,22 @@ public class ReportController {
 			// TODO: handle exception
 			logger.info("Exception in getReleases()");
 			response.addResponseData(ResponseKey.EXCEPTION, e.getMessage());
+		}
+		return response;
+	}
+	
+	@RequestMapping(value="/create",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseBody submitReport(@RequestBody SubmitReportRequest request) {
+		logger.info("createReport(): Request: "+request.toString());
+		 
+		try {
+			boolean success= reportMgr.submitReport(request);
+			/*logger.info("createReport(): Response: "+response.toString());*/
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("createReport(): Exception: "+e.getMessage());
+			
 		}
 		return response;
 	}
