@@ -11,5 +11,8 @@ public enum ResponseKey {
 	RELEASES,
 	RELEASE,
 	TICKETS,
-	DEFECTS,TEST
+	DEFECTS,
+	TEST1,
+	Test2,
+	Test3;
 }
